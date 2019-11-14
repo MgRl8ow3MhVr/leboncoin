@@ -1,22 +1,138 @@
-.App {
+/* # # # # # # # #  INIT   # # # # # # # # # # # # # # # # #  */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  /* fait que les padding n'ont pas d'effet */
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+
+/* # # # # # # # #   HEADER   # # # # # # # # # # # # # # # # #  */
+
+.header {
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* + et Deposer une annonce */
+.header > div:nth-child(2) {
+  background-color: #f56b2a;
+  color: white;
+  padding: 6px;
+  margin: 0px 40px 0px 40px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+/* le + seul */
+.header > div:nth-child(2) > div {
+  display: inline-block;
+  border: solid 2px white;
+  border-radius: 3px;
+  width: 25px;
+  height: 25px;
   text-align: center;
+  padding: 0;
+  font-size: 2rem;
+  line-height: 50%;
+  transform: scale(0.7);
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* se connecter */
+.header > div:nth-child(5) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-left: 100px;
 }
 
-.App-link {
-  color: #09d3ac;
+/* # # # # # # # #   ELLIPSE   # # # # # # # # # # # # # # # # #  */
+
+.ellipse {
+  background-color: #f56b2a;
+  height: 70px;
+  position: relative;
+}
+
+/* Rechercher */
+.ellipse > form {
+  position: absolute;
+  left: 50%;
+  bottom: -50px;
+  transform: translate(-50%);
+  background-color: white;
+  padding: 40px 80px 40px 80px;
+  box-shadow: 4px 4px 10px #cdcccc;
+  border-radius: 10px;
+}
+
+/*  Que recherchez vous */
+.ellipse > form > input:first-child {
+  width: 200px;
+  padding: 6px 10px 6px 10px;
+  margin-right: 10px;
+}
+
+/* # # # # # # # #   OFFERS   # # # # # # # # # # # # # # # # #  */
+
+.offers {
+  padding: 100px 90px 0px 90px;
+}
+
+/* # # # # # # # #   OFFERSITEM   # # # # # # # # # # # # # # # # #  */
+
+/* Le conteneur contraint la hauteur de tout */
+.offersitem {
+  /* background-color: rgb(232, 155, 155); */
+  height: 180px;
+
+  display: flex;
+  margin: 0px 0px 30px 0px;
+  box-shadow: 4px 4px 10px #cdcccc;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.offersitem > picture {
+  background-color: #cad1d9;
+  width: 240px;
+  /* la hauteur sadapte au parent */
+}
+
+.offersitem > picture > img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.offersitem > nav {
+  /* background-color: rgb(249, 179, 179); */
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0px 10px 0px;
+  font-family: "Roboto", sans-serif;
+  padding-left: 20px;
+}
+
+.offersitem > nav > span:nth-child(1) {
+  font-size: 22px;
+}
+.offersitem > nav > span:nth-child(2) {
+  font-size: 20px;
+  margin-top: 10px;
+  color: #f56b2a;
+}
+.offersitem > nav > span:nth-child(3) {
+  font-size: 16px;
+  /* background-color: brown; */
+  margin-top: auto;
 }

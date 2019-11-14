@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-function App() {
+import "./App.css";
+import Offers from "./containers/Offers";
+import OneOffer from "./containers/OneOffer";
+import Header from "./components/Header";
+
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+const App = () => {
+  console.log("Loading App");
+  const [data, setData] = useState([]);
+
+  const fetchData = async () => {
+    let response = await axios.get(
+      "https://leboncoin-api.herokuapp.com/api/offer/with-count"
+    );
+    setData(response.data.offers);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  console.log("here is the data", data);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <Switch>
+        <Route path="/oneoffer/:offer">
+          <OneOffer />
+        </Route>
+        <Route path="/">
+          <Offers data={data} />
+        </Route>
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
