@@ -6,20 +6,31 @@
   box-sizing: border-box;
   flex: 0 0 auto;
   /* fait que les padding n'ont pas d'effet */
+  font-family: "Roboto", sans-serif;
 }
 a {
   color: black;
   text-decoration: none;
 }
 
+ul,
+li {
+  list-style: none;
+}
+
+body {
+  background-color: #fafafa;
+}
+
 /* # # # # # # # #   HEADER   # # # # # # # # # # # # # # # # #  */
 
 .header {
-  /* background-color: aqua; */
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
+  box-shadow: 4px 4px 10px #cdcccc;
 }
 
 /* + et Deposer une annonce */
@@ -85,14 +96,14 @@ a {
 /* # # # # # # # #   OFFERS   # # # # # # # # # # # # # # # # #  */
 
 .offers {
-  padding: 100px 90px 0px 90px;
+  padding: 100px 90px 50px 90px;
 }
 
 /* # # # # # # # #   OFFERSITEM   # # # # # # # # # # # # # # # # #  */
 
 /* Le conteneur contraint la hauteur de tout */
 .offersitem {
-  /* background-color: rgb(232, 155, 155); */
+  background-color: white;
   height: 180px;
 
   display: flex;
@@ -119,7 +130,6 @@ a {
   display: flex;
   flex-direction: column;
   padding: 10px 0px 10px 0px;
-  font-family: "Roboto", sans-serif;
   padding-left: 20px;
 }
 
@@ -135,4 +145,24 @@ a {
   font-size: 16px;
   /* background-color: brown; */
   margin-top: auto;
+}
+
+/* # # # # # # # #   PAGINATION   # # # # # # # # # # # # # # # # #  */
+
+.offers ul {
+  display: flex;
+  /* margin: auto; */
+}
+
+.offers ul > li {
+  margin: 0 5px;
+}
+.offers ul > li:hover {
+  cursor: pointer;
+}
+
+/* # # # # # # # #   FOOTER   # # # # # # # # # # # # # # # # #  */
+.footer {
+  background-color: grey;
+  height: 200px;
 }

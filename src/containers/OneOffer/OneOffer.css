@@ -1,0 +1,59 @@
+.back {
+  font-size: 1.5rem;
+  margin: 10px;
+}
+
+.oneoffer {
+  /* background-color: red; */
+  padding-left: 220px;
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+
+/* BLock contains image and description. fixed size */
+.descriptionblock {
+  width: 700px;
+}
+
+/* Image contenair and image */
+.descriptionblock > div {
+  height: 400px;
+}
+.descriptionblock img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* /* Bloc name price and date */
+.descriptionblock > ul {
+  height: 150px;
+  padding: 15px;
+
+  box-shadow: 4px 4px 10px #cdcccc;
+}
+
+/* Title */
+.descriptionblock > ul > span:nth-child(1) {
+  font-size: 22px;
+}
+
+/* Price */
+.descriptionblock > ul > span:nth-child(3) {
+  font-size: 20px;
+  margin-top: 10px;
+  color: #f56b2a;
+}
+
+/* Date */
+.descriptionblock > ul > span:nth-child(5) {
+  font-size: 20px;
+  margin-top: 10px;
+  background-color: red;
+}
+
+/* Description title */
+.descriptionblock > h2 {
+  font-size: 1.5rem;
+  margin: 15px;
+}

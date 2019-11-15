@@ -21,18 +21,6 @@ const Offers = () => {
           <div>se connecter</div>
         </div>
       </div>
-      <div className="ellipse">
-        <form>
-          <input
-            placeholder="Que recherchez vous"
-            type="text"
-            name="email"
-            // value={}
-            // onChange={handleEmailChange}
-          ></input>
-          <input type="submit" value="Valider" />
-        </form>
-      </div>
     </>
   );
 };

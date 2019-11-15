@@ -1,20 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import OffersItem from "../components/OffersItem";
-import OneOffer from "./OneOffer";
+
+// creation d'un tableau des pages
 
 const Offers = props => {
-  const { data } = props;
+  const { data, itemsPerPage, setpageNum } = props;
+
+  let pagesArr = [];
+  for (let i = 1; i < Math.floor(data.count / itemsPerPage) + 2; i++) {
+    pagesArr.push(i);
+  }
 
   return (
     <div className="offers">
-      {data.map((oneoffer, index) => {
+      {data.offers.map((oneoffer, index) => {
         return (
-          <Link key={index} to="/oneoffer/Offer1">
+          <Link key={index} to={"/oneoffer/" + index}>
             <OffersItem {...oneoffer} />
           </Link>
         );
       })}
+
+      <ul className="pages">
+        {pagesArr.map(pageNumber => {
+          return (
+            <li
+              onClick={() => {
+                setpageNum(pageNumber);
+              }}
+            >
+              {pageNumber}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };
