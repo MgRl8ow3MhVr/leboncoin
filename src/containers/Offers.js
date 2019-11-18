@@ -16,16 +16,17 @@ const Offers = props => {
     <div className="offers">
       {data.offers.map((oneoffer, index) => {
         return (
-          <Link key={index} to={"/oneoffer/" + index}>
+          <Link key={index} to={"/oneoffer/" + oneoffer._id}>
             <OffersItem {...oneoffer} />
           </Link>
         );
       })}
 
       <ul className="pages">
-        {pagesArr.map(pageNumber => {
+        {pagesArr.map((pageNumber, index) => {
           return (
             <li
+              key={index}
               onClick={() => {
                 setpageNum(pageNumber);
               }}

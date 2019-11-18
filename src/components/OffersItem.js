@@ -15,5 +15,11 @@ const OffersItem = props => {
       </nav>
     </div>
   );
+  //default proprs s'applique quqnd les proprietes sont undefined
+  // OffersItem.defaultProps = {
+  //   title: "Sans nom",
+  //   picture:
+  //     "https://www.baldivisvet.com.au/wp-content/uploads/2017/10/hd-cute-cat-wallpaper.jpg"
+  // };
 };
 export default OffersItem;

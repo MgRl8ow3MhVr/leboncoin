@@ -1,35 +1,54 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 import { Link, useParams } from "react-router-dom";
 import "./OneOffer.css";
 import "../../App.css";
 
-const OneOffer = props => {
+const OneOffer = () => {
   const obj = useParams();
-  const theOffer = props.data[obj.offerNum];
+  const id = obj.id;
 
-  return (
-    <div class="oneoffer">
-      <Link to="/offers" className="back">
-        Back to offers
-      </Link>
+  const [dataoffer, setDataoffer] = useState({ _id: null });
 
-      <div class="descriptionblock">
-        <div>
-          <img src={theOffer.pictures[0]} alt="pic" />
+  useEffect(() => {
+    const fetchData = async () => {
+      let response = await axios.get(
+        "https://leboncoin-api.herokuapp.com/api/offer/" + id
+      );
+      setDataoffer(response.data);
+    };
+    fetchData();
+  }, []);
+
+  if (dataoffer._id === null) {
+    return <div>loading</div>;
+  } else {
+    return (
+      <div className="oneoffer">
+        <Link to="/offers" className="back">
+          Back to offers
+        </Link>
+
+        <div className="descriptionblock">
+          <div>
+            <img src={dataoffer.pictures[0]} alt="pic" />
+          </div>
+          <ul>
+            <span>{dataoffer.title}</span>
+            <br />
+            <span>{dataoffer.price} €</span>
+            <br />
+            <span>
+              {dataoffer.created.slice(0, 10)} à{" "}
+              {dataoffer.created.slice(11, 19)}
+            </span>
+          </ul>
+          <h2>Description</h2>
+          <p>{dataoffer.description}</p>
         </div>
-        <ul>
-          <span>{theOffer.title}</span>
-          <br />
-          <span>{theOffer.price} €</span>
-          <br />
-          <span>
-            {theOffer.created.slice(0, 10)} à {theOffer.created.slice(11, 19)}
-          </span>
-        </ul>
-        <h2>Description</h2>
-        <p>{theOffer.description}</p>
       </div>
-    </div>
-  );
+    );
+  }
 };
 export default OneOffer;
