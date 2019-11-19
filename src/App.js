@@ -42,8 +42,25 @@ const App = () => {
     fetchData();
   }, [pageNum]);
 
+  //Login actions to be passed in Header and Sign uP
+  const loginOK = username => {
+    setUser(username);
+    Cookies.set("user", username);
+  };
+
   return (
     <Router>
+      {/* # # # # # # # LOGBOX # # # # # # # # # # # #  */}
+      {showModal && (
+        <LogBoxModal
+          loginOK={loginOK}
+          unshowmodal={() => {
+            setShowModal(false);
+          }}
+        />
+      )}
+
+      {/* # # # # # # # HEADER # # # # # # # # # # # #  */}
       <Header
         user={user}
         showmodal={() => {
@@ -56,27 +73,17 @@ const App = () => {
           alert("vous etes déconnecté");
         }}
       />
-      {showModal && (
-        <LogBoxModal
-          loginOK={username => {
-            setUser(username);
-            Cookies.set("user", username);
-          }}
-          unshowmodal={() => {
-            setShowModal(false);
-          }}
-        />
-      )}
+
       <Switch>
-        {/* Route for one Offer display */}
+        {/* # # # # # # # ROUTE FOR 1 Offer DISPLAY # # # # # # # # # # # #  */}
         <Route path="/oneoffer/:id">
           {data.count && <OneOffer data={data.offers} />}
         </Route>
-        {/* Route for sign up */}
+        {/* # # # # # # # ROUTE FOR SIGN UP # # # # # # # # # # # #  */}
         <Route path="/signup">
-          <SignUp />
+          <SignUp loginOK={loginOK} />
         </Route>
-        {/* DEFAULT - Route for display all offers */} */}
+        {/* # # # # # # # DEFAULT ROUTE : ALL OFFERS  # # # # # # # # # # # #  */}
         <Route path="/">
           <SearchBar />
           <Offers

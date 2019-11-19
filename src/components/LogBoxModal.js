@@ -14,7 +14,7 @@ const login = async (email, password, loginOK, unshowmodal) => {
     let user = response.data.account.username;
     loginOK(user);
     unshowmodal();
-  } catch {
+  } catch (error) {
     alert("Authent Error");
   }
 };
@@ -28,19 +28,24 @@ const LogBoxModal = props => {
   return (
     <>
       <div className="blackbox" onClick={unshowmodal}></div>
-      <div className="formlogbox">
+      <div
+        className="formlogbox"
+        onClick={() => {
+          console.log("hey");
+        }}
+      >
         <form
           onSubmit={event => {
             event.preventDefault();
             login(email, password, loginOK, unshowmodal);
           }}
         >
-          connexion
+          <h2>connexion</h2>
           <hr></hr>
           <input
             placeholder="email"
             value={email}
-            type="text"
+            type="email"
             onChange={event => {
               setEmail(event.target.value);
             }}
@@ -55,6 +60,7 @@ const LogBoxModal = props => {
           ></input>
           <input type="submit" value="Se connecter" />
         </form>
+        <hr></hr>
 
         <button
           onClick={() => {

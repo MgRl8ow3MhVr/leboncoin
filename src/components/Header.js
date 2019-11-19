@@ -2,18 +2,23 @@ import React from "react";
 import logo from "./images/logo.svg";
 import search from "./images/search.svg";
 import userpic from "./images/userpic.svg";
+import { Link } from "react-router-dom";
+import { AddBox, SearchRounded } from "@material-ui/icons";
 
 const Header = props => {
   const { user, showmodal, unLog } = props;
   return (
     <>
       <div className="header">
-        <img src={logo} alt="logo" />
+        <Link to="/">
+          <img src={logo} alt="logo" />
+        </Link>
         <div>
-          <div>+</div>
+          {/* <div>+</div> */}
+          <AddBox />
           <span>Deposer une annonce</span>
         </div>
-        <img src={search} alt="search" height="20px" />
+        <SearchRounded />
         <div>rechercher</div>
 
         <div
