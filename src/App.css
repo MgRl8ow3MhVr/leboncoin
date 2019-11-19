@@ -66,7 +66,7 @@ body {
   transform: scale(1.1);
 }
 
-/* # # # # # # # #   ELLIPSE   # # # # # # # # # # # # # # # # #  */
+/* # # # # # # # #   SEARCH BAR   # # # # # # # # # # # # # # # # #  */
 
 .ellipse {
   background-color: #f56b2a;
@@ -174,7 +174,7 @@ body {
   position: fixed;
   top: 0;
   z-index: 999;
-  animation: fadeinblackbox 0.5s;
+  /* animation: fadeinblackbox 0.5s; */
 }
 
 @keyframes fadeinblackbox {

@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "./images/logo.svg";
-import search from "./images/search.svg";
 import userpic from "./images/userpic.svg";
 import { Link } from "react-router-dom";
 import { AddBox, SearchRounded } from "@material-ui/icons";

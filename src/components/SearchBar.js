@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
 const SearchBar = props => {
+  const { setsearchTerm } = props;
+  const [input, setInput] = useState("");
+
   return (
     <div className="ellipse">
-      <form>
+      <form
+        onSubmit={event => {
+          event.preventDefault();
+          setsearchTerm(input);
+        }}
+      >
         <input
           placeholder="Que recherchez vous"
           type="text"
-          name="email"
-          // value={}
-          // onChange={handleEmailChange}
+          value={input}
+          onChange={event => {
+            setInput(event.target.value);
+          }}
         ></input>
         <input type="submit" value="Valider" />
       </form>
