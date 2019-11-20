@@ -13,9 +13,10 @@ const Header = props => {
           <img src={logo} alt="logo" />
         </Link>
         <div>
-          {/* <div>+</div> */}
           <AddBox />
-          <span>Deposer une annonce</span>
+          <Link to="/publish">
+            <span>Deposer une annonce</span>
+          </Link>
         </div>
         <SearchRounded />
         <div>rechercher</div>

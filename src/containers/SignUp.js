@@ -32,7 +32,7 @@ const SignUp = props => {
   const [password2, setPassword2] = useState();
 
   return (
-    <div className="signuppage">
+    <div className="signuppage formpage">
       <form
         onSubmit={event => {
           event.preventDefault();
@@ -45,21 +45,20 @@ const SignUp = props => {
           }
         }}
       >
-        <h1>Creez un compte</h1>
+        <h1>Créer un compte</h1>
         <hr></hr>
-        <h2>pseudo</h2>
+        <h2>pseudo *</h2>
         <input
-          placeholder="pseudo"
+          placeholder=""
           value={pseudo}
           type="text"
           onChange={event => {
             setPseudo(event.target.value);
           }}
         ></input>
-        <h2>email</h2>
+        <h2>email *</h2>
 
         <input
-          placeholder="email"
           value={email}
           type="text"
           onChange={event => {
@@ -68,9 +67,8 @@ const SignUp = props => {
         ></input>
         <div className="passwordbox">
           <div>
-            <h2>mot de passe</h2>
+            <h2>mot de passe *</h2>
             <input
-              placeholder="mot de passe"
               value={password}
               type="text"
               onChange={event => {
@@ -79,9 +77,8 @@ const SignUp = props => {
             ></input>
           </div>
           <div>
-            <h2>confirmer le mot de passe</h2>
+            <h2>confirmer le mot de passe *</h2>
             <input
-              placeholder="confirmer"
               value={password2}
               type="text"
               onChange={event => {
@@ -95,7 +92,7 @@ const SignUp = props => {
           <span>J'accepte les conditions</span>
         </div>
 
-        <input type="submit" value="Creer mon compte personnel" />
+        <input type="submit" value="Créer mon compte personnel" />
       </form>
     </div>
   );

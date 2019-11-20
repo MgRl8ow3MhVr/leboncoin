@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import { Link, useParams } from "react-router-dom";
-import "./OneOffer.css";
-import "../../App.css";
 
 const OneOffer = () => {
   const obj = useParams();

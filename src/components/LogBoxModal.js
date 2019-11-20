@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
+// import { CSSTransition } from "react-transition-group";
 
 const login = async (email, password, loginOK, unshowmodal) => {
   try {
@@ -12,8 +12,7 @@ const login = async (email, password, loginOK, unshowmodal) => {
         password: password //azerty
       }
     );
-    let user = response.data.account.username;
-    loginOK(user);
+    loginOK(response.data.account.username, response.data.token);
     unshowmodal();
   } catch (error) {
     alert("Authent Error");
@@ -31,38 +30,35 @@ const LogBoxModal = props => {
       {/* <CSSTransition classNames="dialog" timeout={300}> */}
       <div>
         <div className="blackbox" onClick={unshowmodal}></div>
-        <div
+        <form
           className="formlogbox"
-          onClick={() => {
-            console.log("hey");
+          onSubmit={event => {
+            event.preventDefault();
+            login(email, password, loginOK, unshowmodal);
           }}
         >
-          <form
-            onSubmit={event => {
-              event.preventDefault();
-              login(email, password, loginOK, unshowmodal);
+          <h1>Connexion</h1>
+          <hr></hr>
+          <h2>email *</h2>
+
+          <input
+            value={email}
+            type="email"
+            onChange={event => {
+              setEmail(event.target.value);
             }}
-          >
-            <h2>connexion</h2>
-            <hr></hr>
-            <input
-              placeholder="email"
-              value={email}
-              type="email"
-              onChange={event => {
-                setEmail(event.target.value);
-              }}
-            ></input>
-            <input
-              placeholder="password"
-              type="text"
-              value={password}
-              onChange={event => {
-                setPassword(event.target.value);
-              }}
-            ></input>
-            <input type="submit" value="Se connecter" />
-          </form>
+          ></input>
+          <h2>mot de passe *</h2>
+
+          <input
+            type="text"
+            value={password}
+            onChange={event => {
+              setPassword(event.target.value);
+            }}
+          ></input>
+          <input type="submit" value="Se connecter" />
+
           <hr></hr>
 
           <button
@@ -73,7 +69,7 @@ const LogBoxModal = props => {
           >
             Creer un compte
           </button>
-        </div>
+        </form>
       </div>
       {/* </CSSTransition> */}
     </>

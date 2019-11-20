@@ -16,8 +16,6 @@ const Offers = () => {
   const [data, setData] = useState({ count: 0, offers: [] });
   const [searchTerm, setsearchTerm] = useState("");
 
-  console.log("ici", searchTerm);
-
   //Fecth Data only at first load
   useEffect(() => {
     const fetchData = async () => {

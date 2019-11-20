@@ -5,7 +5,8 @@ const SearchBar = props => {
   const [input, setInput] = useState("");
 
   return (
-    <div className="ellipse">
+    <div className="searchbar">
+      <div className="orangeEllipse"></div>
       <form
         onSubmit={event => {
           event.preventDefault();
@@ -20,7 +21,7 @@ const SearchBar = props => {
             setInput(event.target.value);
           }}
         ></input>
-        <input type="submit" value="Valider" />
+        <input type="submit" value="Rechercher" />
       </form>
     </div>
   );
