@@ -1,60 +1,79 @@
-import React, { useCallback, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
+// import { loadOptions } from "@babel/core";
 
-// const MyDropzone = props => {
-//   const onDrop = useCallback(acceptedFiles => {
-//     console.log(acceptedFiles);
-//     props.loadFile(acceptedFiles[0]);
-//   }, []);
-//   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+const thumbsContainer = {
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  marginTop: 16
+};
 
-//   return (
-//     <div {...getRootProps()}>
-//       <input {...getInputProps()} />
-//       {isDragActive ? (
-//         <p>Drop the files here ...</p>
-//       ) : (
-//         <p>Drag 'n' drop some files here, or click to select files</p>
-//       )}
-//     </div>
-//   );
-// };
+const thumb = {
+  display: "inline-flex",
+  borderRadius: 2,
+  border: "1px solid #eaeaea",
+  marginBottom: 8,
+  marginRight: 8,
+  width: 100,
+  height: 100,
+  padding: 4,
+  boxSizing: "border-box"
+};
 
-const MyDropzone = props => {
-  const { imag, setImg } = useState("");
+const thumbInner = {
+  display: "flex",
+  minWidth: 0,
+  overflow: "hidden"
+};
 
-  const onDrop = useCallback(acceptedFiles => {
-    acceptedFiles.forEach(file => {
-      const reader = new FileReader();
+const img = {
+  display: "block",
+  width: "auto",
+  height: "100%"
+};
 
-      reader.onabort = () => console.log("file reading was aborted");
-      reader.onerror = () => console.log("file reading has failed");
-      reader.onload = () => {
-        // Do whatever you want with the file contents
-        console.log("drop", acceptedFiles);
-        console.log("drop", file);
-        // props.loadFile(file);
-        const binaryStr = reader.result;
+function MyDropzone(props) {
+  const [files, setFiles] = useState([]);
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: "image/*",
+    onDrop: acceptedFiles => {
+      props.loadFiles(acceptedFiles);
+      setFiles(
+        acceptedFiles.map(file =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file)
+          })
+        )
+      );
+    }
+  });
 
-        console.log(binaryStr);
-      };
-      /* reader.readAsDataURL(file); */
-      /* const binaryStr = reader.result; */
+  const thumbs = files.map(file => (
+    <div style={thumb} key={file.name}>
+      <div style={thumbInner}>
+        <img src={file.preview} style={img} />
+      </div>
+    </div>
+  ));
 
-      /* setImg(binaryStr); */
-
-      //   console.log(reader.readAsDataURL());
-    });
-  }, []);
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  useEffect(
+    () => () => {
+      // Make sure to revoke the data uris to avoid memory leaks
+      files.forEach(file => URL.revokeObjectURL(file.preview));
+    },
+    [files]
+  );
 
   return (
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      <p>Drag 'n' drop some files here, or click to select files</p>
-      <img src={imag} alt="image"></img>
-    </div>
+    <section className="container">
+      <div {...getRootProps({ className: "dropzone" })} className="dropZone">
+        <input {...getInputProps()} />
+        <p>Drag 'n' drop some files here, or click to select files</p>
+      </div>
+      <aside style={thumbsContainer}>{thumbs}</aside>
+    </section>
   );
-};
+}
 
 export default MyDropzone;

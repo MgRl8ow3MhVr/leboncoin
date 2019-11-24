@@ -202,7 +202,7 @@ input[type="submit"]:hover {
 
 /* # # # # # # # #   DEPOSER UNE ANNONCE FORM   # # # # # # # # # # # # # # # # #  */
 
-.publish p {
+.dropZone {
   background-color: rgb(215, 215, 215);
   padding: 30px;
   color: rgb(139, 137, 137);
@@ -212,6 +212,10 @@ input[type="submit"]:hover {
   font-size: 0.8rem;
   display: flex;
   align-items: center;
+}
+
+.imageDropzone {
+  width: 50px;
 }
 
 /* # # # # # # # #   SEARCH BAR   # # # # # # # # # # # # # # # # #  */

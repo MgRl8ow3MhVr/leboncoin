@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 const SearchBar = props => {
-  const { setsearchTerm } = props;
   const [input, setInput] = useState("");
+  const { goSearch } = props;
 
   return (
     <div className="searchbar">
@@ -10,7 +10,7 @@ const SearchBar = props => {
       <form
         onSubmit={event => {
           event.preventDefault();
-          setsearchTerm(input);
+          goSearch(input);
         }}
       >
         <input

@@ -4,7 +4,7 @@ const OffersItem = props => {
   return (
     <div className="offersitem">
       <picture>
-        <img src={props.pictures[0]} alt="pic" />
+        {props.pictures && <img src={props.pictures[0]} alt="pic" />}
       </picture>
       <nav>
         <span>{props.title}</span>

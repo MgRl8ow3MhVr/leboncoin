@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-
 import { CheckBox } from "@material-ui/icons";
 
 const sendSignUp = async (email, password, pseudo, loginOK) => {
   try {
     const response = await axios.post(
-      "https://leboncoin-api.herokuapp.com/api/user/sign_up",
+      // "https://leboncoin-api.herokuapp.com/api/user/sign_up",
+      // "http://localhost:4000/user/signup",
+      "https://backendleboncoin.herokuapp.com/user/signup",
       {
         email: email,
         username: pseudo,
         password: password
       }
     );
-    // let user = response.data.account.username;
     console.log(response.data);
 
-    loginOK(response.data.account.username);
+    loginOK(response.data.account.username, response.data.token);
   } catch (error) {
     alert("ERROR", error.message);
   }
@@ -38,7 +38,7 @@ const SignUp = props => {
           event.preventDefault();
           if (password === password2) {
             sendSignUp(email, password, pseudo, loginOK);
-            alert("Well Done Bro");
+            // alert("Well Done Bro");
             history.push("/");
           } else {
             alert("les mots de passe sont différents");

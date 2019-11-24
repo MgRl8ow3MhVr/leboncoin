@@ -7,9 +7,7 @@ const Upload = props => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [filePhoto, setFilePhoto] = useState("");
-  const [onePhoto, setonePhoto] = useState();
-
+  const [filesPhoto, setFilesPhoto] = useState([]); //Array of files
   return (
     <div className="publish formpage">
       <form
@@ -22,20 +20,27 @@ const Upload = props => {
             data.append("title", title); //permet d'inserer title dans data
             data.append("description", description);
             data.append("price", price);
-            data.append("files", filePhoto); // Inserer le fichier 'file' selectionné par l'utilisateur
+            // data.append("files", filesPhoto); // attention files pour l'API Reacteur moi je nomme Photo
+            filesPhoto.map((filePhoto, index) => {
+              console.log(filesPhoto.path);
+              data.append(`photo${index}`, filePhoto);
+            });
+            // data.append("photos", filesPhoto[0]); // Inserer le fichier 'file' selectionné par l'utilisateur
+            console.log("publish attempt");
 
             const response = await axios.post(
-              "https://leboncoin-api.herokuapp.com/api/offer/publish",
+              // "https://leboncoin-api.herokuapp.com/api/offer/publish",
+              // "http://localhost:4000/publish",
+              "https://backendleboncoin.herokuapp.com/publish",
               data,
               {
                 headers: {
-                  // on a besoin de transmettre le token dans le heaer AUthorization
-                  // le serveur s'en servira pour authenti l'utilisateur
                   Authorization: `Bearer ${token}`
                 }
               }
             );
             console.log(response.data);
+            alert("Well Done !");
           } catch (error) {
             console.log(error.message);
             alert("Error");
@@ -69,6 +74,7 @@ const Upload = props => {
           }}
         ></input>
         <h2>Photo*</h2>
+        {/* VERSION INPUT */}
         {/* <input
           type="file"
           multiple={true} //permet de secetionner plusieurs fichiers
@@ -76,13 +82,30 @@ const Upload = props => {
           onChange={event => {
             // type file on utilise event target files. Voir ce que Value donne pour tester
             //tableau
-            setFilePhoto(event.target.files[0]);
+            setFilesPhoto(event.target.files);
           }}
         ></input> */}
 
+        {/* ANCIENNE VERSION DE DROPZONE */}
+        {/* <MyDropzone
+          loadFiles={photos => {
+            setFilesPhoto(photos);
+          }}
+          loadPreviews={photo => {
+            let temp = previewsPhotos;
+            console.log("temp bfor push", temp);
+            temp.push(photo);
+            console.log("temp after push", temp);
+            setPreviews(temp);
+          }}
+          previewsPhotos={previewsPhotos}
+        ></MyDropzone> */}
+
+        {/* NOUVELLE VERSION DE DROPZONE */}
+
         <MyDropzone
-          loadFile={photo => {
-            setFilePhoto(photo);
+          loadFiles={photos => {
+            setFilesPhoto(photos);
           }}
         ></MyDropzone>
 

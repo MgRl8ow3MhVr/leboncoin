@@ -20,12 +20,15 @@ const App = () => {
   console.log("Loading App");
   //Get the cookie value - set it into State user - 'undefined' if not existent
   const userCookie = Cookies.get("user");
+  const userToken = Cookies.get("token");
   const [user, setUser] = useState(userCookie);
+  const [token, setToken] = useState(userToken);
   const [showModal, setShowModal] = useState(false);
 
   //Login actions to be passed in Header and Sign uP
   const loginOK = (username, token) => {
     setUser(username);
+    setToken(token);
     Cookies.set("user", username);
     Cookies.set("token", token);
   };
@@ -35,6 +38,7 @@ const App = () => {
     Cookies.remove("user");
     Cookies.remove("token");
     setUser(null);
+    setToken(null);
     alert("vous etes déconnecté");
   };
 
@@ -67,7 +71,7 @@ const App = () => {
           </Route>
           {/* # # # # # # # ROUTE PUBLISH # # # # # # # # # # # #  */}
           <Route path="/publish">
-            <Publish token={Cookies.get("token")} />
+            <Publish token={token} />
           </Route>
           {/* # # # # # # # ROUTE FOR SIGN UP # # # # # # # # # # # #  */}
           <Route path="/signup">
