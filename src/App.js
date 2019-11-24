@@ -18,6 +18,13 @@ import LogBoxModal from "./components/LogBoxModal";
 
 const App = () => {
   console.log("Loading App");
+  //API Address
+  const apiAddress = "https://backendleboncoin.herokuapp.com";
+  // const apiAddress = "http://localhost:4000";
+  // const apiAddress = "https://leboncoin-api.herokuapp.com";
+
+  console.log("API Address is ", apiAddress);
+
   //Get the cookie value - set it into State user - 'undefined' if not existent
   const userCookie = Cookies.get("user");
   const userToken = Cookies.get("token");
@@ -51,8 +58,20 @@ const App = () => {
           unshowmodal={() => {
             setShowModal(false);
           }}
+          apiAddress={apiAddress}
         />
       )}
+      {/* # # # # # # # API CHOICE # # # # # # # # # # # # 
+      {showAPIModal && (
+        <LogAPIModal
+          unshowmodal={() => {
+            setShowAPIModal(false);
+          }}
+          changeAPI={address => {
+            setapiAddress(address);
+          }}
+        />
+      )} */}
 
       {/* # # # # # # # HEADER # # # # # # # # # # # #  */}
       <Header
@@ -67,15 +86,15 @@ const App = () => {
         <Switch>
           {/* # # # # # # # ROUTE FOR 1 Offer DISPLAY # # # # # # # # # # # #  */}
           <Route path="/oneoffer/:id">
-            <OneOffer />
+            <OneOffer apiAddress={apiAddress} />
           </Route>
           {/* # # # # # # # ROUTE PUBLISH # # # # # # # # # # # #  */}
           <Route path="/publish">
-            <Publish token={token} />
+            <Publish token={token} apiAddress={apiAddress} />
           </Route>
           {/* # # # # # # # ROUTE FOR SIGN UP # # # # # # # # # # # #  */}
           <Route path="/signup">
-            <SignUp loginOK={loginOK} />
+            <SignUp loginOK={loginOK} apiAddress={apiAddress} />
           </Route>
           {/* # # # # # # # ROUTE FOR TEST CARROUSSEL # # # # # # # # # # # #  */}
 
@@ -85,7 +104,7 @@ const App = () => {
 
           {/* # # # # # # # DEFAULT ROUTE : ALL OFFERS  # # # # # # # # # # # #  */}
           <Route path="/">
-            <Offers />
+            <Offers apiAddress={apiAddress} />
           </Route>
         </Switch>
       </main>

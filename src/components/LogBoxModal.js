@@ -3,17 +3,12 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 // import { CSSTransition } from "react-transition-group";
 
-const login = async (email, password, loginOK, unshowmodal) => {
+const login = async (email, password, loginOK, unshowmodal, apiAddress) => {
   try {
-    const response = await axios.post(
-      // "http://localhost:4000/login",
-      // "https://leboncoin-api.herokuapp.com/api/user/log_in",
-      "https://backendleboncoin.herokuapp.com/login",
-      {
-        email: email, //farid@lereacteur.io
-        password: password //azerty
-      }
-    );
+    const response = await axios.post(apiAddress + "/login", {
+      email: email, //farid@lereacteur.io
+      password: password //azerty
+    });
     loginOK(response.data.account.username, response.data.token);
     unshowmodal();
   } catch (error) {
@@ -23,7 +18,7 @@ const login = async (email, password, loginOK, unshowmodal) => {
 
 const LogBoxModal = props => {
   const history = useHistory();
-  const { loginOK, unshowmodal } = props;
+  const { loginOK, unshowmodal, apiAddress } = props;
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -36,7 +31,7 @@ const LogBoxModal = props => {
           className="formlogbox"
           onSubmit={event => {
             event.preventDefault();
-            login(email, password, loginOK, unshowmodal);
+            login(email, password, loginOK, unshowmodal, apiAddress);
           }}
         >
           <h1>Connexion</h1>

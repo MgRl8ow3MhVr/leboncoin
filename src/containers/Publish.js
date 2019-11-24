@@ -3,7 +3,7 @@ import axios from "axios";
 import MyDropzone from "../components/MyDropzone";
 
 const Upload = props => {
-  const { token } = props;
+  const { token, apiAddress } = props;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -22,23 +22,16 @@ const Upload = props => {
             data.append("price", price);
             // data.append("files", filesPhoto); // attention files pour l'API Reacteur moi je nomme Photo
             filesPhoto.map((filePhoto, index) => {
-              console.log(filesPhoto.path);
               data.append(`photo${index}`, filePhoto);
             });
             // data.append("photos", filesPhoto[0]); // Inserer le fichier 'file' selectionné par l'utilisateur
             console.log("publish attempt");
 
-            const response = await axios.post(
-              // "https://leboncoin-api.herokuapp.com/api/offer/publish",
-              // "http://localhost:4000/publish",
-              "https://backendleboncoin.herokuapp.com/publish",
-              data,
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`
-                }
+            const response = await axios.post(apiAddress + "/publish", data, {
+              headers: {
+                Authorization: `Bearer ${token}`
               }
-            );
+            });
             console.log(response.data);
             alert("Well Done !");
           } catch (error) {

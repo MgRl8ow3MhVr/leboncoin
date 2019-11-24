@@ -12,7 +12,7 @@ console.log("items", itemsPerPage);
 
 // creation d'un tableau des pages
 
-const Offers = () => {
+const Offers = props => {
   const [pageNum, setpageNum] = useState(1); //current page
   const [data, setData] = useState({ count: 0, offers: [] });
   const [searchTerm, setsearchTerm] = useState("");
@@ -23,9 +23,8 @@ const Offers = () => {
       const pagination = `?skip=${(pageNum - 1) *
         itemsPerPage}&limit=${itemsPerPage}`;
       let response = await axios.get(
-        // "https://leboncoin-api.herokuapp.com/api/offer/with-count" +
-        // "http://localhost:4000/offer/with-count" +
-        "https://backendleboncoin.herokuapp.com/offer/with-count" +
+        props.apiAddress +
+          "/offer/with-count" +
           pagination +
           "&title=" +
           searchTerm
