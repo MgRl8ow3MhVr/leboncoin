@@ -274,12 +274,16 @@ input[type="submit"]:hover {
 
 .offers {
   padding: 150px 90px 50px 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Le conteneur contraint la hauteur de tout */
 .offersitem {
   background-color: white;
   height: 180px;
+  width: 700px;
 
   display: flex;
   margin: 0px 0px 30px 0px;
@@ -305,7 +309,6 @@ input[type="submit"]:hover {
 }
 
 .offersitem > nav {
-  /* background-color: rgb(249, 179, 179); */
   display: flex;
   flex-direction: column;
   padding: 10px 0px 10px 0px;
@@ -314,6 +317,7 @@ input[type="submit"]:hover {
 
 .offersitem > nav > span:nth-child(1) {
   font-size: 22px;
+  max-width: 400px;
 }
 .offersitem > nav > span:nth-child(2) {
   font-size: 20px;
@@ -322,7 +326,6 @@ input[type="submit"]:hover {
 }
 .offersitem > nav > span:nth-child(3) {
   font-size: 16px;
-  /* background-color: brown; */
   margin-top: auto;
 }
 
@@ -355,12 +358,16 @@ input[type="submit"]:hover {
 
 /* BLock contains image and description. fixed size */
 .descriptionblock {
-  width: 350px;
+  width: 500px;
   margin-right: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* /* Bloc name price and date */
 .descriptionblock > ul {
+  width: 100%;
   height: 150px;
   padding: 15px;
   background-color: white;
@@ -388,10 +395,10 @@ input[type="submit"]:hover {
 }
 
 /* Description title */
-/* .descriptionblock > h2 {
+.descriptionblock > h2 {
   font-size: 1.5rem;
   margin: 15px;
-} */
+}
 /* RIGHT SIDE */
 .rightside {
   display: flex;
@@ -437,6 +444,7 @@ input[type="submit"]:hover {
 /* Carousel contenair  */
 /* Carroussel takes descptiion block width */
 .carrousel {
+  width: 100%;
   border-radius: 5px;
   background-color: rgb(95, 94, 94);
   box-shadow: 4px 4px 10px #cdcccc;
