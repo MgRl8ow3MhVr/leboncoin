@@ -1,7 +1,6 @@
 ## Leboncoin Copy
 
 ![](demo/demo.gif)
-In the project directory, you can run:
 
 ## Description
 
