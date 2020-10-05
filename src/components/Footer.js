@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
 const Footer = props => {
-  return <div className="footer">Réplique LeBonCoin codée par Pierre</div>;
-};
-export default Footer;
+  return <div className='footer'>codée par Toto</div>
+}
+export default Footer
